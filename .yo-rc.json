@@ -1,0 +1,17 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.2",
+    "libraryName": "spfx-advent-calendar-ace",
+    "libraryId": "a4adc23e-6928-47b9-836d-755c022a5931",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "spfx-advent-calendar-ace",
+    "solutionShortDescription": "spfx-advent-calendar-ace description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "adaptiveCardExtension",
+    "aceTemplateType": "Image"
+  }
+}

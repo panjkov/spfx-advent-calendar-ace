@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "advent-calendar-adaptive-card-extension": {
+      "components": [
+        {
+          "entrypoint": "./lib/adaptiveCardExtensions/adventCalendar/AdventCalendarAdaptiveCardExtension.js",
+          "manifest": "./src/adaptiveCardExtensions/adventCalendar/AdventCalendarAdaptiveCardExtension.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "AdventCalendarAdaptiveCardExtensionStrings": "lib/adaptiveCardExtensions/adventCalendar/loc/{locale}.js"
+  }
+}

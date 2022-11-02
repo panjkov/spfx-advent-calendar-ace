@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-advent-calendar-ace-client-side-solution",
+    "id": "a4adc23e-6928-47b9-836d-755c022a5931",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.15.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "spfx-advent-calendar-ace description"
+      },
+      "longDescription": {
+        "default": "spfx-advent-calendar-ace description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "spfx-advent-calendar-ace Feature",
+        "description": "The feature that activates elements of the spfx-advent-calendar-ace solution.",
+        "id": "bacb9cb5-bf05-4c34-ae9c-d66625c51d93",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-advent-calendar-ace.sppkg"
+  }
+}
