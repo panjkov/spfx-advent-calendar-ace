@@ -13,6 +13,9 @@ export class AdventCalendarPropertyPane {
                 PropertyPaneTextField('title', {
                   label: strings.TitleFieldLabel
                 }),
+                PropertyPaneTextField('listTitle', {
+                  label: strings.ListTitleLabel
+                }),
                 PropertyPaneTextField('doorPrefix', {
                   label: strings.DoorPrefixLabel
                 }),

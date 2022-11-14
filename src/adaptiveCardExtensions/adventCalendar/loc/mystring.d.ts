@@ -8,6 +8,10 @@ declare interface IAdventCalendarAdaptiveCardExtensionStrings {
   QuickViewButton: string;
   DoorPrefixLabel: string;
   OpenHereTextLabel: string;
+  ListTitleLabel: string;
+  VisitDoorButton: string;
+  CalendarCompleteText: string;
+  CalendarInactiveText: string;
 }
 
 declare module 'AdventCalendarAdaptiveCardExtensionStrings' {

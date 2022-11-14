@@ -6,7 +6,7 @@ import {
   ICardButton
 } from '@microsoft/sp-adaptive-card-extension-base';
 import * as strings from 'AdventCalendarAdaptiveCardExtensionStrings';
-import { IAdventCalendarAdaptiveCardExtensionProps, IAdventCalendarAdaptiveCardExtensionState, QUICK_VIEW_REGISTRY_ID } from '../AdventCalendarAdaptiveCardExtension';
+import { IAdventCalendarAdaptiveCardExtensionProps, IAdventCalendarAdaptiveCardExtensionState } from '../AdventCalendarAdaptiveCardExtension';
 
 export class CardView extends BaseImageCardView<IAdventCalendarAdaptiveCardExtensionProps, IAdventCalendarAdaptiveCardExtensionState> {
   /**
@@ -14,25 +14,38 @@ export class CardView extends BaseImageCardView<IAdventCalendarAdaptiveCardExten
    * It will support up to two buttons for 'Large' card size.
    */
   public get cardButtons(): [ICardButton] | [ICardButton, ICardButton] | undefined {
-    return [
-      {
-        title: strings.QuickViewButton,
-        action: {
-          type: 'QuickView',
-          parameters: {
-            view: QUICK_VIEW_REGISTRY_ID
-          }
-        }
-      }
-    ];
+    return null;
+
   }
 
   public get data(): IImageCardParameters {
-    return {
-      primaryText: this.properties.doorPrefix.concat(" ",this.state.calendarCard.sequence.toString()),
-      imageUrl: this.state.calendarCard.pictureUrl ?? require('../assets/MicrosoftLogo.png'),
-      title: this.properties.openHereText //this.state.calendarCard.title
-    };
+    const date = new Date();
+    const currentDay = date.getDate();
+    const currentMonth = date.getMonth();
+
+      if(currentMonth === 11 && currentDay < 25) {
+      return {
+        primaryText: this.properties.doorPrefix.concat(" ",this.state.calendarCard.sequence.toString()),
+        imageUrl: this.state.calendarCard.pictureUrl ?? require('../assets/MicrosoftLogo.png'),
+        title: this.properties.openHereText //this.state.calendarCard.title
+      }; 
+    }
+
+      else if (currentMonth === 11 && currentDay > 24) {
+        return {
+          primaryText: strings.CalendarCompleteText,
+          imageUrl: "",
+          title: ""
+        };
+    } else {
+      return {
+        primaryText: strings.CalendarInactiveText,
+        imageUrl: "", 
+        title: ""
+      };
+      
+    }
+
   }
 
   public get onCardSelection(): IQuickViewCardAction | IExternalLinkCardAction | undefined {
@@ -44,4 +57,3 @@ export class CardView extends BaseImageCardView<IAdventCalendarAdaptiveCardExten
     };
   }
 }
-// require('../assets/MicrosoftLogo.png')

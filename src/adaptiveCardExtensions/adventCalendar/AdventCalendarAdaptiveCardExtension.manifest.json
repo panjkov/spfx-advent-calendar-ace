@@ -18,14 +18,15 @@
     "group": { "default": "Dashboard" },
     "title": { "default": "Advent Calendar" },
     "description": { "default": "Advent Calendar description" },
-    "officeFabricIconFontName": "SharePointLogo",
+    "officeFabricIconFontName": "snowflake",
     "cardSize": "Large",
     "properties": {
       "title": "Advent Calendar",
       "description": "Advent Calendar description",
       "iconProperty": "snowflake", // Default to sharepointlogo
       "doorPrefix": "Door ",
-      "openHereText": "open here >>"
+      "openHereText": "open here >>",
+      "listTitle": "AdventCalendar"
     }
   }]
 }

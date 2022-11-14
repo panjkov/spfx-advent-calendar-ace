@@ -9,6 +9,7 @@ export interface IAdventCalendarAdaptiveCardExtensionProps {
   title: string;
   doorPrefix: string;
   openHereText: string;
+  listTitle: string;
 }
 
 export interface IAdventCalendarAdaptiveCardExtensionState {
@@ -32,23 +33,27 @@ export default class AdventCalendarAdaptiveCardExtension extends BaseAdaptiveCar
   private _deferredPropertyPane: AdventCalendarPropertyPane | undefined;
 
   public onInit(): Promise<void> {
-    this.state = {
-      calendarCard: undefined
-     };
 
     this.cardNavigator.register(CARD_VIEW_REGISTRY_ID, () => new CardView());
     this.quickViewNavigator.register(QUICK_VIEW_REGISTRY_ID, () => new QuickView());
 
-    return this._fetchCurrentCard();
+
+    this.state = {
+      calendarCard: undefined
+     };
+     
+      return this._fetchCurrentCard();
+
   }
 
   private _fetchCurrentCard(): Promise<void> {
+
     const date = new Date();
     const currentDay = date.getDate();
 
 
     return this.context.spHttpClient
-    .get(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getByTitle('AdventCalendar')/items?$filter=Sequence eq ${currentDay}&$select=Title,Link,Picture,Sequence`,
+    .get(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getByTitle('${this.properties.listTitle}')/items?$filter=Sequence eq ${currentDay}&$select=Title,Link,Picture,Sequence`,
     SPHttpClient.configurations.v1,
     {
       headers: {
@@ -57,9 +62,21 @@ export default class AdventCalendarAdaptiveCardExtension extends BaseAdaptiveCar
     })
       .then(response => response.json())
       .then(calendarCards => {
-        const calendarCard = calendarCards.value.pop();
+        const calendarCard = calendarCards?.value.pop();
         let pict = null;
+        let title = "";
         let pictureUrl = "";
+        let link = null;
+        let sequence = currentDay;
+        if (calendarCard !== undefined && calendarCard !== null) {
+          if(calendarCard.Title !== null) {
+            title = calendarCard.Title;
+          }
+
+          if(calendarCard.Sequence !== null) {
+            sequence = calendarCard.Sequence;
+          }
+        
         if (calendarCard.Picture !== null) {
           pict = JSON.parse(calendarCard.Picture);
           pictureUrl = pict.serverRelativeUrl;
@@ -68,24 +85,24 @@ export default class AdventCalendarAdaptiveCardExtension extends BaseAdaptiveCar
           pictureUrl = this.context.pageContext.web.logoUrl;
         }
 
-        let link = null;
         if (calendarCard.Link !== null) {
           link = calendarCard.Link.Url;
         }
         else {
           link = this.context.pageContext.web.absoluteUrl;
         }
-        
-        // var s1 = new String(calendarCard.Picture.serverUrl);
-        // var s2 = new String(calendarCard.Picture.serverRelativeUrl);
-        // var s3 = s1.concat(s2.toString());
+      }
+      else {
+        pictureUrl = this.context.pageContext.web.logoUrl;
+        link = this.context.pageContext.web.absoluteUrl;
+      }
 
         this.setState({
           calendarCard: {
-            title: calendarCard.Title,
+            title: title || "",
             pictureUrl: pictureUrl ?? "",
             resourceUrl: link,
-            sequence: calendarCard.Sequence
+            sequence: sequence || currentDay
           }
         })
       })

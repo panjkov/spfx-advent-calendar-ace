@@ -3,7 +3,8 @@
   "configurations": [
     {
       "name": "Hosted workbench",
-      "type": "pwa-msedge",
+      "type": "msedge",
+      "runtimeExecutable": "beta",
       "request": "launch",
       "url": "https://m365x289575.sharepoint.com/sites/Home/_layouts/15/workbench.aspx",
       "webRoot": "${workspaceRoot}",

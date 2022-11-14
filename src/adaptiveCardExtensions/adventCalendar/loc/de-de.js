@@ -10,6 +10,8 @@ define([], function() {
     "DoorPrefixLabel": "Türchenprefix text",
     "OpenHereTextLabel": "Öffnen hier text",
     "ListTitleLabel": "List Name",
-    "VisitDoorButton": "Besuchen"
+    "VisitDoorButton": "Besuchen",
+    "CalendarCompleteText": "Adventskalender ist vollständig",
+    "CalendarInactiveText": "Adventskalender ist nicht aktiv"
   }
 });
